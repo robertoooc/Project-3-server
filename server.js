@@ -34,8 +34,11 @@ const myMiddleware = (req, res, next) => {
 }
 
 io.on('connection',(socket)=>{
-  console.log(socket.id)
-  socket.on('send_comment',(message)=>{
+  //console.log(socket.id)
+  socket.on('send-comment',(message)=>{
+    socket.broadcast.emit('receive-comment',message)
+  })
+  socket.on('receive-comment',(message)=>{
     console.log(message)
   })
 })

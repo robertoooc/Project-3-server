@@ -17,7 +17,11 @@ const UserSchema = new mongoose.Schema({
   },
   bio: {
     type: String
-  }
+  },
+  chats: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Chat'
+  }]
 }, {
   timestamps: true
 })

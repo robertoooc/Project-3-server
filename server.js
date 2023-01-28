@@ -33,6 +33,12 @@ const myMiddleware = (req, res, next) => {
   next() // makes express move on to the next route/middleware
 }
 
+io.on('connection',(socket)=>{
+  console.log(socket.id)
+  socket.on('send_comment',(message)=>{
+    console.log(message)
+  })
+})
 // app.use(myMiddleware)
 
 // GET / -- test index route
@@ -42,7 +48,7 @@ app.get('/', myMiddleware, (req, res) => {
 })
 
 // controllers
-app.use('/api-v1/users', require('./controllers/api-v1/users.js'))
+app.use('/users', require('./controllers/api-v1/users.js'))
 
 // hey listen
 server.listen(PORT, () => {

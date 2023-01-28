@@ -28,6 +28,36 @@ router.post('/', async (req, res) => {
   }
 })
 
+//PUT to update bio
+router.put('/:id', async (req, res) => {
+  try {
+    const newBio = req.body.bio
+    const updatedUser = await db.User.findOneAndUpdate(
+      { _id: req.params.id },
+      { bio: newBio },
+      { new: true }
+    )
+    res.json({ updatedUser })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ msg: 'server error'  })
+  }
+})
+
+// DELETE /users/:id - DELETE user
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletedUser = await db.User.findOneAndDelete({ _id: req.params.id });
+    if (!deletedUser) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.json({ msg: 'user deleted', deletedUser });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'server error' });
+  }
+});
+
 // POST /users/register - CREATE new user
 router.post('/register', async (req, res) => {
   try {

@@ -110,8 +110,8 @@ router.post('/login', async (req, res) => {
 // GET /auth-locked - will redirect if bad jwt token is found
 router.get('/auth-locked', authLockedRoute, (req, res) => {
   // we know that if we made it here, the res.locals contains an authorized user
-  // console.log('this user has been authorized:', res.locals.user)
-  res.json({ msg: 'welcome to the private route!' })
+  //console.log('this user has been authorized:', res.locals.user)
+  res.json( { msg: 'welcome to the private route!' })
 })
 
 module.exports = router

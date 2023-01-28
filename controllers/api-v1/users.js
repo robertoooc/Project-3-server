@@ -16,6 +16,7 @@ try {
   }
 })
 
+// Post /users - CREATE new user
 router.post('/', async (req, res) => {
   try {
     const newUsers = new db.User(req.body)

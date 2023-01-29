@@ -4,8 +4,17 @@ const router = require('express').Router()
 
 router.get('/', async function (req,res){
     try{
+        // in order for this to work, the axios call ping to api must be: 
+        // localhost:8000/chats?search={search term from react}
+        let searchFor = req.query.search
+        console.log(req.query.search)
         const chats = await db.Chat.find({})
-        res.json({msg: 'Welcome to chats 💬 ', chats})
+        const find = chats.find(chat => chat.title.includes(searchFor))
+        if (find != undefined){
+            res.json(find)
+        }else{
+            res.json({msg:`sorry bud, couldn't find ${searchFor}`})
+        }
     }catch(err){
         console.log(err)
         res.status(500).json({msg: 'my bad G'})

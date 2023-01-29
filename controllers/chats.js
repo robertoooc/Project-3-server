@@ -4,8 +4,11 @@ const router = require('express').Router()
 
 router.get('/', async function (req,res){
     try{
+        const chats = await db.Chat.find({})
+        res.json({msg: 'Welcome to chats 💬 ', chats})
     }catch(err){
         console.log(err)
+        res.status(500).json({msg: 'server error'})
     }
 })
 

@@ -52,6 +52,7 @@ app.get('/', myMiddleware, (req, res) => {
 
 // controllers
 app.use('/users', require('./controllers/api-v1/users.js'))
+app.use('/chats', require('./controllers/chats.js'))
 
 // hey listen
 server.listen(PORT, () => {

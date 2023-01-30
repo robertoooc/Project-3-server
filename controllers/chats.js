@@ -9,12 +9,14 @@ router.get('/', async function (req,res){
         let searchFor = req.query.search
         console.log(req.query.search)
         const chats = await db.Chat.find({})
-        const find = chats.find(chat => chat.title.includes(searchFor))
-        if (find != undefined){
-            res.json(find)
+        const findAll = chats.filter(chat=>chat.title.includes(searchFor))
+        //const find = chats.find(chat => chat.title.includes(searchFor))
+        if (findAll.length > 0){
+            res.json(findAll)
         }else{
             res.json({msg:`sorry bud, couldn't find ${searchFor}`})
         }
+
     }catch(err){
         console.log(err)
         res.status(500).json({msg: 'my bad G'})

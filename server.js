@@ -35,12 +35,16 @@ const myMiddleware = (req, res, next) => {
 
 io.on('connection',(socket)=>{
   //console.log(socket.id)
+  socket.on('join-chat',(chatId)=>{
+    socket.join(chatId)
+  })
   socket.on('send-comment',(message)=>{
-    socket.broadcast.emit('receive-comment',message)
+    socket.to(message.room).emit('receive-comment',message)
   })
   socket.on('receive-comment',(message)=>{
     console.log(message)
   })
+
 })
 // app.use(myMiddleware)
 

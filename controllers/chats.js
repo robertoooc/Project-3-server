@@ -1,5 +1,15 @@
 const db = require('../models')
 const router = require('express').Router()
+const socketIo = require('socket.io')
+const { createServer } = require('http')
+const server = createServer(router)
+const io = socketIo(server,{
+    cors: {
+      // linking to react app
+      origin: 'http://localhost:3000'
+      //might need to include METHODS
+    }
+  })
 
 
 router.get('/', async function (req,res){
@@ -63,6 +73,18 @@ router.post('/:id/comment', async function (req,res){
         const addComment = req.body
         findChatRoom.content.push(addComment)
         await findChatRoom.save()
+        let chatId = req.params.id
+        let content = req.body.content
+        // io.on('connection',(socket)=>{
+        //     socket.on('join-chat',(chatId)=>{
+        //         socket.join(chatId)
+        //       })
+        //     socket.on('send-comment',(content)=>{
+        //         socket.to(chatId).emit('receive-comment',content)
+        //       })
+        //     //io.to(message.room).emit('receive-comment',message)
+
+        // })
         res.json(findChatRoom)
     }catch(err){
         console.log(err.kind)

@@ -37,13 +37,15 @@ io.on('connection',(socket)=>{
   //console.log(socket.id)
   socket.on('join-chat',(chatId)=>{
     socket.join(chatId)
+    console.log(chatId,"room hoined")
   })
   socket.on('send-comment',(message)=>{
-    socket.to(message.room).emit('receive-comment',message)
+    console.log(message,'here')
+    console.log(message.comment)
+     //socket.join(message.room)
+     socket.to(`${message.room}`).emit('receive-comment',message.comment)
   })
-  socket.on('receive-comment',(message)=>{
-    console.log(message)
-  })
+
 
 })
 // app.use(myMiddleware)

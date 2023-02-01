@@ -89,7 +89,7 @@ router.post('/:id/comment', async function (req,res){
         // })
         res.json(findChatRoom)
     }catch(err){
-        console.log(err.kind)
+        console.log(err._message)
         console.log(req.body)
         res.status(500).json({msg: 'my bad G'})
     }

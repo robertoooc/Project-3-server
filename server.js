@@ -43,7 +43,7 @@ io.on('connection',(socket)=>{
     console.log(message,'here')
     console.log(message.comment)
      //socket.join(message.room)
-     socket.to(`${message.room}`).emit('receive-comment',message.comment)
+     socket.to(`${message.room}`).emit('receive-comment',message)
   })
 
 

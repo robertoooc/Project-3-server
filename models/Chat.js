@@ -12,7 +12,7 @@ const CommentSchema = new mongoose.Schema({
 
 // Parent Schema
 const ChatSchema = new mongoose.Schema({
-    title: { type: String, required: true },
+    title: { type: String, lowercase: true, required: true },
     content: [CommentSchema],
     owner: {
         type: mongoose.Schema.Types.ObjectId,

@@ -71,10 +71,12 @@ router.post('/:id/comment', async function (req,res){
         const findChatRoom = await db.Chat.findById(req.params.id)
         if(!findChatRoom) return res.status(404).json({ msg: 'You messed up' });
         const addComment = req.body
+        console.log(req.body)
         findChatRoom.content.push(addComment)
         await findChatRoom.save()
         let chatId = req.params.id
         let content = req.body.content
+        console.log(findChatRoom)
         // io.on('connection',(socket)=>{
         //     socket.on('join-chat',(chatId)=>{
         //         socket.join(chatId)
@@ -88,6 +90,7 @@ router.post('/:id/comment', async function (req,res){
         res.json(findChatRoom)
     }catch(err){
         console.log(err.kind)
+        console.log(req.body)
         res.status(500).json({msg: 'my bad G'})
     }
 })

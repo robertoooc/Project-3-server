@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const authLockedRoute = require('./authLockedRoute')
 
 
+
 // GET /users - test endpoint
 router.get('/', async (req, res) => {
   try {

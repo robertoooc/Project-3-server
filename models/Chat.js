@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 
 // Child Schema
 const CommentSchema = new mongoose.Schema({
-    content: { type: String, required: true }
+    content: { type: String, required: true },
+    userName: { type: String, required: true},
+    userEmail: { type: String, required: true}
 }, {
     timestamps: true
 })

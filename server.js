@@ -11,7 +11,7 @@ const server = createServer(app)
 const io = socketIo(server,{
   cors: {
     // linking to react app
-    origin: 'http://localhost:3000'
+    origin: '*'
     //might need to include METHODS
   }
 })

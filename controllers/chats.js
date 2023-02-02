@@ -33,6 +33,7 @@ router.get('/', async function (req,res){
     }
 })
 
+// finds specific chat room and it's content
 router.get('/:id', async function (req,res){
     try{
         const findChatRoom = await db.Chat.findById(req.params.id)
@@ -44,6 +45,7 @@ router.get('/:id', async function (req,res){
     }
 })
 
+// creates new chat room
 router.post('/', async function (req,res){
     try{
         const newChatRoom = await db.Chat.create(req.body)
@@ -55,6 +57,7 @@ router.post('/', async function (req,res){
     }
 })
 
+// finds all comments within a specific chat room
 router.get('/:id/comment', async function (req,res){
     try{
         const findChatRoom = await db.Chat.findById(req.params.id)
@@ -66,6 +69,7 @@ router.get('/:id/comment', async function (req,res){
     }
 })
 
+// posts a new comment to a specific chat room to store message history
 router.post('/:id/comment', async function (req,res){
     try{
         const findChatRoom = await db.Chat.findById(req.params.id)

@@ -35,10 +35,12 @@ const myMiddleware = (req, res, next) => {
 
 io.on('connection',(socket)=>{
   //console.log(socket.id)
+  // on render in react the user is sent here to join that specific room they're in so they see only the content there
   socket.on('join-chat',(chatId)=>{
     socket.join(chatId)
     console.log(chatId,"room hoined")
   })
+  // when users on react decide to send a message payload it goes here and will emit that message to everyone else in that same room as them
   socket.on('send-comment',(message)=>{
     console.log(message,'here')
     console.log(message.comment)
